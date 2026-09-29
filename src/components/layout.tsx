@@ -16,6 +16,7 @@ import { useEmbed } from "../context/EmbedContext";
 import DnDProvider from "../context/DnDProvider";
 import { useLocation } from "react-router-dom";
 import FoldersSidebarNavigation from "./FoldersSidebarNavigation";
+import WorkspaceSidebar from "./WorkspaceSidebar";
 import AddOptionToolbar from "./AddOptionToolbar";
 import Breadcrumb from "./Breadcrumb";
 import Header from "./Header";
@@ -49,6 +50,8 @@ function WorkspaceLayoutContent({ children }: { children: React.ReactNode }) {
 
 			const isWorkspaceRoot = /^\/[^/]+\/workspace\/?$/.test(pathname) || pathname === "/";
 			const isFolderRoute = /\/workspace\/folder\//.test(pathname);
+\n\t\t\tconst isWorkspaceRoute = /\/workspace(?:\/|$)/.test(pathname);
+\t\t\tconst showWorkspaceNavigation = mode !== "embedded" && !isBotEditor && isWorkspaceRoute;
 
 			// No modo embedded, escondemos a navegação institucional (breadcrumb com seletor
 			// de workspace e header) e mostramos só a área de trabalho dos flows.
