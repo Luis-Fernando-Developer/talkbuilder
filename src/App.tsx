@@ -17,6 +17,9 @@ import InvitePage from "./pages/invite/[token]/page";
 
 import Layout from "./components/layout";
 import WorkspaceMain from './components/Main';
+import WorkspaceOverviewPage from "./pages/workspace/overview/page";
+import WorkspaceExecutionsPage from "./pages/workspace/executions/page";
+import WorkspaceIntegrationsPage from "./pages/workspace/integrations/page";
 import ProtectedRoute from './components/ProtectedRoute';
 import EmbedErrorScreen from './components/EmbedErrorScreen';
 import { useAuth } from './context/AuthContext';
@@ -115,6 +118,42 @@ function App() {
 
       {/* Bot público publicado: /:slug/flow/:publicId */}
       <Route path="/:slug/flow/:publicId" element={<PublicFlowPage />} />
+
+      {/* Visão geral do workspace */}
+      <Route
+        path="/:slug/workspace/overview"
+        element={
+          <ProtectedRoute>
+            <SlugGuard>
+              <Layout><WorkspaceOverviewPage /></Layout>
+            </SlugGuard>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Execuções */}
+      <Route
+        path="/:slug/workspace/executions"
+        element={
+          <ProtectedRoute>
+            <SlugGuard>
+              <Layout><WorkspaceExecutionsPage /></Layout>
+            </SlugGuard>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Integrações */}
+      <Route
+        path="/:slug/workspace/integrations"
+        element={
+          <ProtectedRoute>
+            <SlugGuard>
+              <Layout><WorkspaceIntegrationsPage /></Layout>
+            </SlugGuard>
+          </ProtectedRoute>
+        }
+      />
 
       {/* Workspace raiz do usuário: /:slug/workspace */}
       <Route
